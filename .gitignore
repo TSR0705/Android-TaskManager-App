@@ -1,0 +1,34 @@
+# Gradle files
+.gradle/
+build/
+.claude/
+
+# Local configuration file (sdk path, etc.)
+local.properties
+
+# Log Files
+*.log
+
+# Android Studio / IntelliJ IDEA files
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Built APKs/Bundles
+*.apk
+*.aar
+*.ap_
+*.aab
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Captures and logs
+captures/
+*.log
+
+# Generated files
+/subprojects/*/build
