@@ -1,92 +1,99 @@
-# Android Task Manager App
+# 🎯 Task Manager
 
-A clean, modern, and offline-first task management application built for Android. This project showcases standard modern Android development practices, demonstrating clean architecture, declarative UI design, reactive programming, and dependency injection.
+[![Kotlin](https://img.shields.io/badge/Kotlin-1.9+-Purple.svg?style=flat&logo=kotlin)](https://kotlinlang.org/)
+[![Compose](https://img.shields.io/badge/Jetpack_Compose-Material_3-blue.svg?style=flat&logo=android)](https://developer.android.com/compose)
+[![Room](https://img.shields.io/badge/Room-Database-green.svg?style=flat&logo=sqlite)](https://developer.android.com/training/data-storage/room)
+[![Hilt](https://img.shields.io/badge/Hilt-DI-orange.svg?style=flat)](https://developer.android.com/training/dependency-injection/hilt-android)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
----
-
-## 🌟 Key Features
-
-* **Task CRUD Operations**: Seamlessly create, read, update, and delete tasks.
-* **Status Toggling**: Instantly mark tasks as completed or pending directly from the home feed.
-* **Priority Classification**: Categorize tasks into **Low**, **Medium**, or **High** priority levels with visual indicators.
-* **Search Functionality**: Query-based, case-insensitive instant search filtering across task titles and descriptions.
-* **Beautiful Material 3 UI**: Polished look using Material 3 UI components, featuring support for dark/light themes and modern edge-to-edge layout styling.
-* **Offline-First Persistence**: Powered by a local SQLite database using Room, ensuring state is preserved across app relaunches.
+An elegant, offline-first task management Android application demonstrating modern architecture patterns (MVVM + clean architecture), declarative UI, reactive data flow, and dependency injection.
 
 ---
 
-## 🛠️ Tech Stack & Libraries
+## 📸 App Screenshots
 
-* **Core Language**: [Kotlin](https://kotlinlang.org/)
-* **UI Framework**: [Jetpack Compose](https://developer.android.com/compose) (with Material 3 components)
-* **Architecture Pattern**: MVVM (Model-View-ViewModel) + Clean Architecture
-* **Dependency Injection**: [Hilt (Dagger)](https://developer.android.com/training/dependency-injection/hilt-android)
-* **Local Persistence**: [Room Database](https://developer.android.com/training/data-storage/room)
-* **Asynchronous Flow**: Kotlin Coroutines & reactive [Flow / StateFlow](https://kotlinlang.org/docs/flow.html)
-* **Navigation**: [Compose Navigation Component](https://developer.android.com/develop/ui/compose/navigation)
+Below is a gallery of the Task Manager app in action, showing the splash screen, task list, styling, and forms:
 
----
-
-## 📐 Architecture & Clean Design
-
-The app follows the official Google architecture guidelines, dividing the codebase into logical layers:
-
-1. **Domain Layer (`data/model`)**: Contains clean domain models (e.g., `Task`, `TaskPriority`) decoupled from persistence logic.
-2. **Data Layer (`data/local`, `data/repository`)**: Manages the SQLite database via Room, mapping database entities (`TaskEntity`) to domain entities (`Task`). The repository serves as the single source of truth.
-3. **UI / Presentation Layer (`ui/screens`, `ui/components`)**: Uses ViewModels to expose state reactively through `StateFlow` to Compose screens, keeping UI components stateless and lightweight.
+<div align="center">
+  <table>
+    <tr>
+      <td><img src="pictures/Screenshot%202026-05-26%20094418.png" width="180" alt="Splash Screen"/><br/><sub><b>Splash Screen</b></sub></td>
+      <td><img src="pictures/Screenshot_20260526_104625_Task%20Manager.jpg.jpeg" width="180" alt="Home Screen"/><br/><sub><b>Home Screen</b></sub></td>
+      <td><img src="pictures/6100406109853126401.jpg" width="180" alt="Add Task Screen"/><br/><sub><b>Add Task</b></sub></td>
+      <td><img src="pictures/6100406109853126399.jpg" width="180" alt="Task Priority Detail"/><br/><sub><b>Task Customization</b></sub></td>
+      <td><img src="pictures/6100406109853126400.jpg" width="180" alt="About Screen"/><br/><sub><b>About Screen</b></sub></td>
+    </tr>
+  </table>
+</div>
 
 ---
 
-## 📸 Screenshots
+## ⚡ Tech Stack & Architecture
 
-| Splash Screen | Home Screen / List | Add & Edit Task | About / Settings |
-|:---:|:---:|:---:|:---:|
-| *Placeholder* | *Placeholder* | *Placeholder* | *Placeholder* |
+This project is built using industry-standard libraries and architectures:
+
+* **Core & Async**: [Kotlin](https://kotlinlang.org/), Coroutines, and [Flow / StateFlow](https://kotlinlang.org/docs/flow.html) for reactive streams.
+* **UI**: [Jetpack Compose](https://developer.android.com/compose) utilizing Material 3 components and edge-to-edge layouts.
+* **Database**: [Room Database](https://developer.android.com/training/data-storage/room) for persistent local cache.
+* **Dependency Injection**: [Hilt (Dagger)](https://developer.android.com/training/dependency-injection/hilt-android) for class decoupling and testability.
+* **Navigation**: Type-safe navigation utilizing the [Compose Navigation Component](https://developer.android.com/develop/ui/compose/navigation).
+
+### Architecture Flow
+
+The codebase follows the official Android Architecture Guidelines (MVVM with Clean Architecture flow):
+
+```mermaid
+graph TD
+    subgraph UI [UI Layer]
+        A[MainActivity] --> B[TaskNavGraph]
+        B --> C[Screens: Splash / Home / Add-Edit / About]
+        C <--> D[ViewModels: HomeViewModel / AddEditViewModel]
+    end
+    subgraph Domain [Domain Layer]
+        D <--> E[Task Domain Model]
+    end
+    subgraph Data [Data Layer]
+        D --> F[TaskRepository]
+        F --> G[TaskDao]
+        G --> H[(Room SQLite Database)]
+        G --> I[TaskEntity]
+        I <-->|Mappers| E
+    end
+    
+    style H fill:#4CAF50,stroke:#388E3C,stroke-width:2px,color:#fff
+    style E fill:#2196F3,stroke:#1976D2,stroke-width:2px,color:#fff
+    style D fill:#FF9800,stroke:#F57C00,stroke-width:2px,color:#fff
+```
 
 ---
 
-## 🚀 Setup & Build Instructions
+## 🚀 Getting Started
 
 ### Prerequisites
-* **Android Studio** (Koala or newer recommended)
-* **JDK 17** or higher
+* **Android Studio** (Koala or newer)
+* **JDK 17**
 * **Android SDK** API level 34+
 
-### Installation & Run
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/TSR0705/Android-TaskManager-App.git
-   cd Android-TaskManager-App
-   ```
-2. Open the project in Android Studio.
-3. Allow Gradle to sync dependencies.
-4. Select a virtual device (Emulator) or connect a physical device.
-5. Click the **Run** button (`Shift + F10` / `Control + R`).
+### Clone & Build
+```bash
+git clone https://github.com/TSR0705/Android-TaskManager-App.git
+cd Android-TaskManager-App
+```
+1. Open the folder in Android Studio and let Gradle sync.
+2. Select an emulator or connect a device and click **Run** (`Shift + F10`).
 
 ### Build APK
-To build a debug APK from the command line:
-* **Windows (PowerShell/CMD)**:
-  ```powershell
-  ./gradlew assembleDebug
-  ```
-* **macOS / Linux**:
-  ```bash
-  ./gradlew assembleDebug
-  ```
-The generated APK will be available in:
-`app/build/outputs/apk/debug/app-debug.apk`
+Generate a debug APK from the root directory:
+```powershell
+# Windows
+./gradlew assembleDebug
 
----
-
-## 🔮 Future Roadmap
-
-* [ ] **Local Notifications**: Scheduled notifications for task due dates.
-* [ ] **Category Tags**: Support for grouping tasks by labels (e.g., Work, Personal, Shopping).
-* [ ] **Data Export/Import**: Ability to backup and restore tasks to/from local storage.
-* [ ] **Biometric Lock**: Privacy lock to secure task logs.
+# macOS / Linux
+./gradlew assembleDebug
+```
+The compiled output is located at: `app/build/outputs/apk/debug/app-debug.apk`
 
 ---
 
 ## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Licensed under the [MIT License](LICENSE).
