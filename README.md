@@ -17,11 +17,11 @@ Below is a gallery of the Task Manager app in action, showing the splash screen,
 <div align="center">
   <table>
     <tr>
-      <td><img src="pictures/Screenshot%202026-05-26%20094418.png" width="180" alt="Android Studio Emulator"/><br/><sub><b>Android Studio Emulator</b></sub></td>
-      <td><img src="pictures/Screenshot_20260526_104625_Task%20Manager.jpg.jpeg" width="180" alt="Edit Task Screen"/><br/><sub><b>Edit Task Screen</b></sub></td>
       <td><img src="pictures/6100406109853126401.jpg" width="180" alt="App Icon on Launcher"/><br/><sub><b>Launcher Screen</b></sub></td>
       <td><img src="pictures/6100406109853126399.jpg" width="180" alt="Home Screen"/><br/><sub><b>Home Screen</b></sub></td>
       <td><img src="pictures/6100406109853126400.jpg" width="180" alt="Add Task Screen"/><br/><sub><b>Add Task Screen</b></sub></td>
+      <td><img src="pictures/Screenshot_20260526_104625_Task%20Manager.jpg.jpeg" width="180" alt="Edit Task Screen"/><br/><sub><b>Edit Task Screen</b></sub></td>
+      <td><img src="pictures/Screenshot%202026-05-26%20094418.png" width="180" alt="Android Studio Emulator"/><br/><sub><b>Android Studio Emulator</b></sub></td>
     </tr>
   </table>
 </div>
